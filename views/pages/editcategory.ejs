@@ -1,0 +1,80 @@
+<%- include('../partials/header.ejs') %>
+
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Edit Category</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-lg border-0">
+                    
+                    <div class="card-header text-center bg-primary text-white">
+                        <h5 class="mb-0">Update Category</h5>
+                    </div>
+
+                    <div class="card-body">
+
+                        <form method="POST" enctype="multipart/form-data"
+                              action="/category/update/<%= category._id %>">
+
+                            <!-- Current Image -->
+                            <div class="form-group text-center mb-4">
+                                <label class="font-weight-bold">Current Image</label><br>
+                                <img src="/<%= category.image %>" 
+                                     class="img-thumbnail mt-2"
+                                     style="width:100px; height:100px; object-fit:cover; border-radius:8px">
+                            </div>
+
+                            <!-- Category Name -->
+                            <div class="form-group mb-3">
+                                <label>Category Name</label>
+                                <input type="text" 
+                                       class="form-control"
+                                       name="name" 
+                                       value="<%= category.name %>"
+                                       placeholder="Enter category name" required>
+                            </div>
+
+                            <!-- New Image -->
+                            <div class="form-group mb-4">
+                                <label>Upload New Image</label>
+                                <input type="file" 
+                                       class="form-control"
+                                       name="image">
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="d-flex justify-content-between">
+                                <a href="/category/view" class="btn btn-secondary">
+                                    Back
+                                </a>
+
+                                <button type="submit" class="btn btn-success px-4">
+                                    Update
+                                </button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<%- include('../partials/footer.ejs') %>

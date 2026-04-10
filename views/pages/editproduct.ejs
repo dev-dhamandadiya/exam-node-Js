@@ -1,0 +1,97 @@
+<%- include('../partials/header.ejs') %>
+
+    <section class="pcoded-main-container">
+        <div class="pcoded-content">
+
+            <div class="page-header">
+                <div class="page-block">
+                    <h5 class="text-center">Edit Product</h5>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="/product/update/<%= product._id %>" method="post"
+                                enctype="multipart/form-data">
+                                <!-- PRODUCT NAME -->
+                                <div class="form-group mb-3">
+                                    <label>Product Name</label>
+                                    <input type="text" class="form-control" name="name" value="<%= product.name %>"
+                                        required>
+                                </div>
+
+                                <!-- DESCRIPTION -->
+                                <div class="form-group mb-3">
+                                    <label>Description</label>
+                                    <textarea class="form-control"
+                                        name="description"><%= product.description %></textarea>
+                                </div>
+
+                                <!-- PRICE -->
+                                <div class="form-group mb-3">
+                                    <label>Price</label>
+                                    <input type="number" class="form-control" name="price" value="<%= product.price %>"
+                                        required>
+                                </div>
+
+                                <!-- OLD IMAGE -->
+                                <div class="form-group mb-3">
+                                    <label>Current Image</label><br>
+                                    <% if (product.image) { %>
+                                        <img src="/<%= product.image %>" width="80">
+                                        <% } %>
+                                </div>
+
+                                <!-- NEW IMAGE -->
+                                <div class="form-group mb-3">
+                                    <label>Change Image</label>
+                                    <input type="file" class="form-control" name="image">
+                                </div>
+
+                                <!-- CATEGORY -->
+                                <div class="form-group mb-3">
+                                    <label>Category</label>
+                                    <select class="form-control" name="category">
+                                        <% categories.forEach(cat=> { %>
+                                            <option value="<%= cat._id %>" <%=product.category?._id==cat._id
+                                                ? 'selected' : '' %>>
+                                                <%= cat.name %>
+                                            </option>
+                                            <% }) %>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-success">Update Product</button>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+
+    <%- include('../partials/footer.ejs') %>
